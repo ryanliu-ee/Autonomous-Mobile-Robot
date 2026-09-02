@@ -212,6 +212,43 @@ Also reading the **encoder** values on the Serial Monitor to confirm they work f
 
 *(Motor, encoder, and sensor-driven-motor test code and results to be added as testing continues.)*
 
+**Testing is still in progress** — subsystems are being verified individually before moving fully into design and integration.
+
+---
+
+## Phase 2 — Design: Chassis
+
+Designing the robot around the parts purchased and verified in Phase 1.
+*In progress.*
+
+### Rough Draft
+
+The initial layout uses a **2-motor drive with a ball caster** for support. The three main components — motor driver, Arduino Nano, and LiPo — sit in the **center of the chassis** for balance, with the **IR sensors lined up across the front** (some angled outward) to detect obstacles.
+
+Still deciding between a **round** and a **rectangular** chassis design.
+
+*(Layout sketch to be added.)*
+
+### CAD
+
+The chassis needs internal spaces sized to hold each component. Parts will most likely be held in place with double-sided tape; the trickiest part is fitting the **ball caster**.
+
+**Process:**
+Working in **Fusion 360**, I started from our base dimensions (**150 mm × 120 mm**) and curved the edges so the robot can't catch on corners. For the rear support wheel, a custom CAD solution (a sphere in a housing) is possible, but a pre-made caster lets us work immediately — and there's a pre-made socket to fit either option.
+
+**Top view — component placement** (top-down; symmetrical pieces marked **S**):
+1. L298N motor driver bay
+2. Wheel housing
+3. (S) Motor wire holes
+4. Breadboard housing
+5. Battery housing
+
+**Side view (left):**
+1. Wheel housing
+2. Motor housing
+
+*(CAD renders to be added.)*
+
 ---
 
 ## Project Reframe (Jan 2026)
@@ -228,9 +265,18 @@ The underlying engineering process stays the same; the target behavior is just m
 
 ## Resources
 
-- Beginner's guide to building an autonomous robot
-- Arduino Nano 33 BLE Rev2 documentation
-- N20 encoder motor datasheets
+**General**
+- [The Fastest Maze-Solving Competition On Earth](https://www.youtube.com/watch?v=ZMQbHMgK2rw)
+- [A Beginner's Guide to Building a Micromouse](https://micromouseguideforbeginners.wordpress.com/1-about/)
+- [Micromouse 2022 Lecture Series (playlist)](https://www.youtube.com/watch?v=UHWE3d_au30&list=PLAWsHzw_h0iiPIaGyXAr44G0XfHfyjOe7)
+
+**Hardware**
+- [Infrared Sensors Explanation](https://youtube.com/shorts/epcZA5XsS20)
+- [How to Choose a Proper Battery — Micromouse USA](http://micromouseusa.com/?p=1002)
+- [DC Motor Connection Video](https://youtu.be/Ey4xoG970Go)
+
+**Software**
+- [IR Sensor Arduino Tutorial — Complete Guide with Code](https://circuitdigest.com/microcontroller-projects/interfacing-ir-sensor-module-with-arduino)
 
 ---
 
