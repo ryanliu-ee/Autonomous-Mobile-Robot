@@ -185,14 +185,14 @@ void loop() {
 
   // LOW means there's an obstacle
   if (sensorState == LOW) {
-    digitalWrite(IR_output, HIGH);  // obstacle detected → LED on
+    digitalWrite(IR_output, HIGH);  // obstacle detected -> LED on
   } else {
-    digitalWrite(IR_output, LOW);   // no obstacle → LED off
+    digitalWrite(IR_output, LOW);   // no obstacle -> LED off
   }
 
   delay(100);
 }
-​```
+```
 
 **Notes:**
 - Sensor sensitivity is adjustable via the small screw/potentiometer on the module.
