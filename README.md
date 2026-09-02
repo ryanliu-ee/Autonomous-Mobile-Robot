@@ -1,30 +1,164 @@
-# Autonomous Obstacle-Avoidance Robot
+# Autonomous Mobile Navigation Robot
 
-A differential-drive robot built to navigate point-to-point across a room while avoiding obstacles. Personal project — hardware, firmware, and (in progress) a custom carrier PCB.
+A from-scratch **autonomous mobile robot** built to navigate point-to-point across an environment while avoiding obstacles. Built from individually selected components rather than a kit, prioritizing **precision and repeatable navigation**.
 
-## Status
-🚧 In progress — subsystems developed and bench-tested individually; integration underway.
+> **Status:** In progress · Started October 2025
+> Hardware selected and purchased · Core subsystems bench-tested · Integration underway
 
-- [x] Motor control (bench-tested)
-- [x] IR-based obstacle detection (bench-tested)
-- [ ] IMU integration (in progress)
-- [ ] Encoder odometry
-- [ ] Point-to-point navigation
-- [ ] Custom carrier PCB (KiCad)
+---
+
+## Table of Contents
+- [Goals](#goals)
+- [Current Status](#current-status)
+- [Project Phases](#project-phases)
+- [Hardware](#hardware)
+- [Component Selection & Tradeoffs](#component-selection--tradeoffs)
+- [Engineering Challenges](#engineering-challenges)
+- [Software](#software)
+- [Progress Log](#progress-log)
+- [Resources](#resources)
+- [Team](#team)
+
+---
+
+## Goals
+
+- Build a working autonomous robot that navigates point-to-point while avoiding obstacles.
+- Prioritize **precision and accuracy** over raw speed.
+- Build it **from scratch** (no kit, DIY parts) to own the full hardware/firmware/controls stack.
+- Reuse the platform for future projects — vision- or voice-controlled robots, or a robotic arm.
+- Longer term: extend the navigation stack toward maze-solving and mapping.
+
+---
+
+## Current Status
+
+| Milestone | Status |
+|---|---|
+| Research goals & parts | ✅ Done |
+| Select & purchase components | ✅ Done |
+| Bench-test motor control | ✅ Done |
+| Bench-test IR obstacle detection | ✅ Done |
+| IMU integration | 🔧 In progress |
+| Encoder odometry | ⬜ Planned |
+| Chassis design & assembly | ⬜ Planned |
+| Point-to-point navigation loop | ⬜ Planned |
+| Custom carrier PCB | ⬜ Planned |
+
+---
+
+## Project Phases
+
+A broad roadmap — not an exact sequence.
+
+### Phase 1 — Hardware
+1. Research goals and parts
+2. Pick and buy parts
+3. Test parts
+
+### Phase 2 — Design
+1. Design the robot
+2. CAD the chassis
+3. Assembly
+4. Loop back to Phase 1 as needed
+
+### Phase 3 — Software
+1. Simulation (optional, mainly for ROS2)
+2. Code the robot
+
+### Phase 4 — Testing
+1. Set up a test environment
+2. Test navigation and obstacle avoidance
+3. Iterate back through earlier phases as needed
+
+---
 
 ## Hardware
-- **MCU:** Arduino Nano 33 BLE Rev2 (onboard IMU)
-- **Drive:** dual encoder motors, differential drive
-- **Sensing:** 4–6 IR sensors for obstacle detection
-- **Chassis:** ~150 × 120 mm, 3D-printed
+
+| Component | Part | Role |
+|---|---|---|
+| **Microcontroller** | Arduino Nano 33 BLE Rev2 | Brain; runs firmware, has a built-in IMU |
+| **Drive** | 12V 50 RPM N20 encoder motors | Propulsion + built-in encoders for odometry |
+| **Wheels** | N20 gear-motor wheels | — |
+| **Obstacle sensing** | Active IR sensors (×6) | Detect obstacles via reflected IR |
+| **Orientation** | Onboard IMU (in the Nano) | Precise heading for turns |
+| **Distance** | Motor encoders | Distance traveled → odometry & PID |
+| **Power** | 2S LiPo (<1000 mAh) | Powers the system |
+| **Regulation** | Adjustable step-down voltage regulators | Stable voltage to MCU and motors |
+| **Motor control** | Motor driver | Controls motor speed, direction, current |
+| **Prototyping** | Small breadboard | Wire components without soldering (for now) |
+
+---
+
+## Component Selection & Tradeoffs
+
+The interesting engineering here was the **decision-making** behind each part — weighing options instead of buying a kit.
+
+### Microcontroller — Arduino Nano 33 BLE Rev2
+Chosen for strong clock speed, flash, and SRAM in a very small footprint, plus a **built-in IMU** (no separate sensor needed for turns). A Raspberry Pi was the fallback if more compute proved necessary.
+**Tradeoff learned the hard way:** it doesn't ship pre-soldered — added an assembly/soldering step.
+
+### Drive — 12V 50 RPM N20 Encoder Motors
+Brushed DC motors chosen because they're easy to control with **PWM** and need no ESC. The N20s have **encoders built in**, saving cost and enabling odometry and PID.
+**Key decision — 35 vs. 50 RPM (torque vs. speed):** chose **50 RPM** to keep the platform fast enough and reusable, planning to recover precision through PID tuning.
+
+### Sensing — Active IR
+The emitter shines an IR beam; the receiver detects the reflection. A reflection means an obstacle is ahead, and reflection strength/timing gives a rough distance.
+**Ruled out GPS:** it's outdoor-scale (satellite-based lat/long) and far too coarse for indoor navigation.
+
+### Power — 2S LiPo + Regulators
+A 2S LiPo sized under ~1000 mAh to the robot's current draw, fed through adjustable step-down regulators — important both to protect the MCU and to give the motors a stable voltage. (Regulators reportedly burn out easily, so spares are worth having.)
+
+---
+
+## Engineering Challenges
+
+Sourcing individual parts surfaced real compatibility problems to reason through:
+
+- **Motor/battery mismatch** — the initial motor+encoder combo would have drained the originally-spec'd battery too quickly; had to reconcile motor current draw against battery capacity.
+- **Voltage vs. controllability** — lower motor voltage is generally easier to control precisely with PID, which fed back into part selection.
+- **Drive configuration** — weighed 2-motor vs. 4-motor drive; chose **2-wheel drive** to keep the system simpler and easier to control.
+- **Assembly reality** — the Nano arriving un-soldered added a hands-on soldering step before bring-up.
+
+---
 
 ## Software
-Written in C/C++ (Arduino). Subsystems developed and validated independently before integration.
 
-## Repo structure
-- `/motor-control` — motor driver code
-- `/ir-detection` — IR obstacle-detection code
-- `/docs` — build photos, wiring notes, test documentation
+- Firmware developed in **Arduino (C/C++)**, with a planned transition to **ROS2** for navigation and optional simulation.
+- Subsystems are written and **bench-tested independently** — motor control and IR detection first — before integration into a full sense–plan–move loop.
+- Navigation goal: reliable point-to-point movement with obstacle avoidance, extensible toward mapping later.
 
-## Notes
-Built to practice the full hardware loop: embedded firmware, sensor integration, soldering/assembly, and PCB design.
+*(Test code lives in [`/code`](./code) — see the [Progress Log](#progress-log) for what's working.)*
+
+---
+
+## Progress Log
+
+**Oct 17 – Dec 10, 2025 — Hardware research**
+Worked through a beginner's guide to building an autonomous robot, listing required and recommended parts (motors/wheels, chassis, microcontroller, sensors, encoders, batteries, regulators, breadboard, motor driver) and the reasoning behind each category.
+
+**Dec 2025 – Jan 2026 — Part selection & purchasing**
+Team compiled a parts spreadsheet by category. Reconciled compatibility (motor current vs. battery), debated 35 vs. 50 RPM motors and 2- vs. 4-motor drive. Bought the Arduino Nano 33 BLE Rev2; selected motors, wheels, IR sensors, regulators, and breadboard. Estimated cost ~\$120 across the team.
+
+**Jan 17, 2026 — Parts arriving**
+Components began arriving; planned to bench-test with an Arduino Uno / Raspberry Pi while waiting on the Nano and motors. Next: verify each subsystem, then move to chassis design and initial programming.
+
+*(More entries as the build progresses.)*
+
+---
+
+## Resources
+
+- Beginner's guide to building an autonomous robot
+- Arduino Nano 33 BLE Rev2 documentation
+- N20 encoder motor datasheets
+
+---
+
+## Team
+
+A small team project. I (**Ryan**) lead the **electronics and programming** — component selection, subsystem bring-up, and firmware — with teammates contributing to parts research and design.
+
+---
+
+*Part of my [portfolio](https://ryanliu-ee.github.io). Questions? [Email me](mailto:ryanliu50@yahoo.com).*
