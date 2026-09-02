@@ -16,6 +16,8 @@ A from-scratch **autonomous mobile robot** built to navigate point-to-point acro
 - [Engineering Challenges](#engineering-challenges)
 - [Software](#software)
 - [Progress Log](#progress-log)
+- [Testing Parts](#phase-1--testing-parts)
+- [Project Reframe](#project-reframe-jan-2026)
 - [Resources](#resources)
 - [Team](#team)
 
@@ -144,6 +146,83 @@ Team compiled a parts spreadsheet by category. Reconciled compatibility (motor c
 Components began arriving; planned to bench-test with an Arduino Uno / Raspberry Pi while waiting on the Nano and motors. Next: verify each subsystem, then move to chassis design and initial programming.
 
 *(More entries as the build progresses.)*
+
+---
+
+## Phase 1 — Testing Parts
+
+Verifying each component works and is compatible before integration.
+*Started Jan 18, 2026 · Ongoing*
+
+### Testing the IR Sensors (Arduino Uno)
+
+To learn the sensor's basics and confirm functionality, I wired an LED, an Arduino Uno, and one IR sensor on a breadboard so the LED lights when the sensor detects an obstacle.
+
+**Connections:**
+
+| From | To |
+|------|-----|
+| Arduino 5V | IR Sensor VCC |
+| Arduino GND | IR Sensor GND |
+| Arduino Pin 12 | IR Sensor OUT |
+| Arduino Pin 2 → resistor | Green LED (+) |
+| Green LED (−) | Arduino GND |
+
+**Test code (Arduino IDE):**
+
+​```cpp
+const int IR_input  = 2;    // reads the sensor's OUT
+const int IR_output = 13;   // drives the indicator LED
+
+void setup() {
+  pinMode(IR_input, INPUT);
+  pinMode(IR_output, OUTPUT);
+  Serial.begin(9600);       // start Serial Monitor
+}
+
+void loop() {
+  int sensorState = digitalRead(IR_input);
+
+  // LOW means there's an obstacle
+  if (sensorState == LOW) {
+    digitalWrite(IR_output, HIGH);  // obstacle detected → LED on
+  } else {
+    digitalWrite(IR_output, LOW);   // no obstacle → LED off
+  }
+
+  delay(100);
+}
+​```
+
+**Notes:**
+- Sensor sensitivity is adjustable via the small screw/potentiometer on the module.
+- *(Build photo of the test setup to be added.)*
+
+### Testing the Motors & Motor Driver (Arduino Uno)
+
+Using the Arduino Uno, a DC encoder motor, and a breadboard to verify I can:
+- spin the motor,
+- change direction,
+- change speed (PWM),
+- and eventually drive two motors at once.
+
+Also reading the **encoder** values on the Serial Monitor to confirm they work for later odometry/PID.
+
+**Note:** the motor driver we bought already includes a 5V regulator on-board — meaning the separate voltage regulators we purchased won't be needed after all.
+
+*(Motor, encoder, and sensor-driven-motor test code and results to be added as testing continues.)*
+
+---
+
+## Project Reframe (Jan 2026)
+
+**The project scope was intentionally refocused.** Rather than solving a full maze, the robot now targets **point-to-point navigation to a location in a room using its onboard sensors** — the priority is getting a reliably *functional* robot first, with more advanced behavior layered on afterward.
+
+**Longer-term goals for the platform:**
+- Convert to a **PCB project** — design custom boards for the sensors and motor drivers.
+- Implement **PID** control, then **odometry**, for precise navigation.
+
+The underlying engineering process stays the same; the target behavior is just more focused and achievable.
 
 ---
 
