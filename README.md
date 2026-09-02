@@ -68,7 +68,7 @@ A broad roadmap — not an exact sequence.
 1. Simulation (optional, mainly for ROS2)
 2. Code the robot
 
-### Phase 4 — Testing
+### Phase 4 — 
 1. Set up a test environment
 2. Test navigation and obstacle avoidance
 3. Iterate back through earlier phases as needed
@@ -157,6 +157,8 @@ Verifying each component works and is compatible before integration.
 ### Testing the IR Sensors (Arduino Uno)
 
 To learn the sensor's basics and confirm functionality, I wired an LED, an Arduino Uno, and one IR sensor on a breadboard so the LED lights when the sensor detects an obstacle.
+
+![TinkerCad Circuit](assets/Screenshot 2026-09-02 124820.png)
 
 **Connections:**
 
