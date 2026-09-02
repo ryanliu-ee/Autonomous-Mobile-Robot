@@ -158,7 +158,7 @@ Verifying each component works and is compatible before integration.
 
 To learn the sensor's basics and confirm functionality, I wired an LED, an Arduino Uno, and one IR sensor on a breadboard so the LED lights when the sensor detects an obstacle.
 
-![TinkerCad Circuit](assets/Screenshot 2026-09-02 124820.png)
+![TinkerCad Circuit](assets/Screenshot-2026-09-02-124820.png)
 
 **Connections:**
 
