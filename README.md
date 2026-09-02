@@ -170,7 +170,7 @@ To learn the sensor's basics and confirm functionality, I wired an LED, an Ardui
 
 **Test code (Arduino IDE):**
 
-
+```cpp
 const int IR_input  = 2;    // reads the sensor's OUT
 const int IR_output = 13;   // drives the indicator LED
 
@@ -192,7 +192,7 @@ void loop() {
 
   delay(100);
 }
-
+```
 
 **Notes:**
 - Sensor sensitivity is adjustable via the small screw/potentiometer on the module.
