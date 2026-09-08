@@ -296,7 +296,7 @@ The underlying engineering process stays the same; the target behavior is just m
 A small team project with a clear division of labor:
 
 - **Ryan Liu** — Electronics & programming: component selection input, subsystem bring-up, firmware, and testing.
-- **Tyler [last name]** — Parts research & cost/risk analysis, and CAD/mechanical design of the chassis.
+- **Tyler Shields** — Parts research & cost/risk analysis, and CAD/mechanical design of the chassis.
 
 ---
 
