@@ -199,6 +199,7 @@ void loop() {
 - Sensor sensitivity is adjustable via the small screw/potentiometer on the module.
 
 **Idle Sensor:**
+
 ![Sensor Off](assets/IR-Off.png)
 
 **Triggered Sensor:**
