@@ -293,7 +293,10 @@ The underlying engineering process stays the same; the target behavior is just m
 
 ## Team
 
-A small team project. I (**Ryan**) lead the **electronics and programming** — component selection, subsystem bring-up, and firmware — with teammates contributing to parts research and design.
+A small team project with a clear division of labor:
+
+- **Ryan Liu** — Electronics & programming: component selection input, subsystem bring-up, firmware, and testing.
+- **Tyler [last name]** — Parts research & cost/risk analysis, and CAD/mechanical design of the chassis.
 
 ---
 
