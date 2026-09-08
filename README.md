@@ -130,7 +130,6 @@ Sourcing individual parts surfaced real compatibility problems to reason through
 - Subsystems are written and **bench-tested independently** — motor control and IR detection first — before integration into a full sense–plan–move loop.
 - Navigation goal: reliable point-to-point movement with obstacle avoidance, extensible toward mapping later.
 
-*(Test code lives in [`/code`](./code) — see the [Progress Log](#progress-log) for what's working.)*
 
 ---
 
