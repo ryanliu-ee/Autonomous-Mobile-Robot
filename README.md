@@ -197,9 +197,11 @@ void loop() {
 
 **Notes:**
 - Sensor sensitivity is adjustable via the small screw/potentiometer on the module.
-- Idle Sensor:
+
+**Idle Sensor:**
 ![Sensor Off](assets/IR-Off.png)
-- Triggered Sensor
+
+**Triggered Sensor:**
 ![Sensor On](assets/IR-On.png)
 
 ### Testing the Motors & Motor Driver (Arduino Uno)
