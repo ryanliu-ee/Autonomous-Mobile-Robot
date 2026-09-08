@@ -200,7 +200,7 @@ void loop() {
 
 **Idle Sensor:**
 
-![Sensor Off](assets/Screenshot 2026-09-02 124844.png)
+![Sensor Off](assets/IR-Off.png)
 
 **Triggered Sensor:**
 ![Sensor On](assets/IR-On.png)
