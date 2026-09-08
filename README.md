@@ -203,6 +203,7 @@ void loop() {
 <img src="assets/IR-Off.png" alt="IR off" width="60%">
 
 **Triggered Sensor:**
+
 <img src="assets/IR-On.png" alt="IR on" width="60%">
 
 ### Testing the Motors & Motor Driver (Arduino Uno)
