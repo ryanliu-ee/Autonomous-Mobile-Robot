@@ -197,7 +197,11 @@ void loop() {
 
 **Notes:**
 - Sensor sensitivity is adjustable via the small screw/potentiometer on the module.
-- *(Build photo of the test setup to be added.)*
+- Idle Sensor:
+![Sensor Off](assets/IR-Off.png)
+
+- Triggered Sensor
+![Sensor On](assets/IR-On.png)
 
 ### Testing the Motors & Motor Driver (Arduino Uno)
 
@@ -228,7 +232,7 @@ The initial layout uses a **2-motor drive with a ball caster** for support. The 
 
 Still deciding between a **round** and a **rectangular** chassis design.
 
-*(Layout sketch to be added.)*
+![Claude Layout](assets/chassis-cad.png)
 
 ### CAD
 
@@ -244,11 +248,13 @@ Working in **Fusion 360**, I started from our base dimensions (**150 mm × 120 m
 4. Breadboard housing
 5. Battery housing
 
+![CAD Top](assets/chassis-cad-top.png)
+
 **Side view (left):**
 1. Wheel housing
 2. Motor housing
 
-*(CAD renders to be added.)*
+![CAD Side](assets/chassis-cad-side.png)
 
 ---
 
